@@ -1,0 +1,21 @@
+# This is the Build docker-compose.yml file. You can build and Run ChurchCRM
+# from this file by first filling in your password and db info in the .env
+# file and then running "docker-compose build", "docker-compose up" in terminal.
+
+version: '2'
+
+services:
+
+  database: #Name of DB Host
+    container_name: database
+    image: jaskipper/alpine-mariadb
+    env_file:
+      - .env
+
+  churchcrm:
+    container_name: churchcrm
+    build: ./build-files
+    ports:
+      - "80:80"
+    env_file:
+      - .env
